@@ -1,7 +1,4 @@
 <template>
-  <head>
-    <title>Meow Mods - FoxHost</title>
-  </head>
   <div id="app" :class="{ dark: isDarkMode }">
     <header class="fade-in">
       <img src="/src/assets/logo.svg" alt="FoxHost Logo" class="logo" />
@@ -75,13 +72,14 @@ export default {
             'FoxHost ensures your modded adventures run smoothly with reliable uptime and fast support.',
         },
       ],
-      isDarkMode: false,
+      isDarkMode: true,
     }
   },
   mounted() {
     const elements = document.querySelectorAll('.fade-up, .fade-in')
     elements.forEach((el) => el.classList.add('visible'))
-    this.isDarkMode = localStorage.getItem('foxhost-dark') === 'true'
+    const savedTheme = localStorage.getItem('foxhost-dark')
+    this.isDarkMode = savedTheme === null ? true : savedTheme === 'true'
   },
   methods: {
     toggleDarkMode() {
